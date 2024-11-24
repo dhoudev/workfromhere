@@ -1,4 +1,7 @@
 package dh.dev.workfromhere.spaces.repository;
 
-public class SpaceResourceRepository {
+import dh.dev.workfromhere.spaces.model.SpaceResource;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SpaceResourceRepository extends JpaRepository<SpaceResource, Integer> {
 }
