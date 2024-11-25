@@ -1,3 +1,15 @@
 spring:
+  config:
+    import: optional:file:.env[.properties]
   application:
     name: workformhere
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${POSTGRESDB_USER}
+    password: ${POSTGRESDB_PASSWORD}
+    url: jdbc:postgresql://localhost:${POSTGRESDB_LOCAL_PORT}/${POSTGRESDB_DB}
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
