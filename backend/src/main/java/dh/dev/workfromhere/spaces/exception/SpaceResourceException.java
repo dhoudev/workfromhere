@@ -9,8 +9,8 @@ public class SpaceResourceException extends RuntimeException{
 
     private final ErrorCode errorCode;
 
-    public SpaceResourceException(ErrorCode errorCode) {
-        super();
+    public SpaceResourceException(ErrorCode errorCode, String message) {
+        super(message);
         this.errorCode = errorCode;
     }
 }

@@ -23,7 +23,7 @@ public class SpaceResourceService {
 
     public SpaceResource getSpaceById(Integer id) {
         return spaceResourceRepository.findById(id).orElseThrow(
-                () -> new SpaceResourceException(ErrorCode.SPACE_NOT_FOUND)
+                () -> new SpaceResourceException(ErrorCode.SPACE_NOT_FOUND, "Space not found")
         );
     }
 
@@ -33,7 +33,7 @@ public class SpaceResourceService {
 
     public void updateSpace(Integer id, SpaceResource spaceResource) {
         SpaceResource spaceResourceToUpdate = spaceResourceRepository.findById(id).orElseThrow(
-                () -> new SpaceResourceException(ErrorCode.SPACE_NOT_FOUND)
+                () -> new SpaceResourceException(ErrorCode.SPACE_NOT_FOUND, "Space not found")
         );
 
         if (spaceResourceToUpdate != null) {
@@ -49,7 +49,7 @@ public class SpaceResourceService {
 
     public void deleteSpaceById(Integer id) {
         SpaceResource spaceResourceToDelete = spaceResourceRepository.findById(id).orElseThrow(
-                () -> new SpaceResourceException(ErrorCode.SPACE_NOT_FOUND)
+                () -> new SpaceResourceException(ErrorCode.SPACE_NOT_FOUND, "Space not found")
         );
 
         if (spaceResourceToDelete != null) {

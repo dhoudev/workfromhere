@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorDetails> spaceResourceException(SpaceResourceException e) {
         ErrorDetails errorDetails = ErrorDetails.builder()
                 .errorCode(e.getErrorCode())
-                .message(e.getMessage())
+                .message(e.getErrorCode().getErrorMessage())
                 .httpStatus(e.getErrorCode().getHttpStatus())
                 .build();
 
