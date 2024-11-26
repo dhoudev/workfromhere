@@ -1,7 +1,10 @@
 package dh.dev.workfromhere.spaces.service;
 
+import dh.dev.workfromhere.exceptions.ErrorCode;
+import dh.dev.workfromhere.spaces.exception.SpaceResourceException;
 import dh.dev.workfromhere.spaces.model.SpaceResource;
 import dh.dev.workfromhere.spaces.repository.SpaceResourceRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +22,9 @@ public class SpaceResourceService {
     }
 
     public SpaceResource getSpaceById(Integer id) {
-        return spaceResourceRepository.findById(id).orElse(null);
+        return spaceResourceRepository.findById(id).orElseThrow(
+                () -> new SpaceResourceException(ErrorCode.SPACE_NOT_FOUND, "Space not found")
+        );
     }
 
     public SpaceResource createSpace(SpaceResource spaceResource) {
@@ -27,7 +32,9 @@ public class SpaceResourceService {
     }
 
     public void updateSpace(Integer id, SpaceResource spaceResource) {
-        SpaceResource spaceResourceToUpdate = spaceResourceRepository.findById(id).orElse(null);
+        SpaceResource spaceResourceToUpdate = spaceResourceRepository.findById(id).orElseThrow(
+                () -> new SpaceResourceException(ErrorCode.SPACE_NOT_FOUND, "Space not found")
+        );
 
         if (spaceResourceToUpdate != null) {
             spaceResourceToUpdate.setName(spaceResource.getName());
@@ -41,7 +48,9 @@ public class SpaceResourceService {
     }
 
     public void deleteSpaceById(Integer id) {
-        SpaceResource spaceResourceToDelete = spaceResourceRepository.findById(id).orElse(null);
+        SpaceResource spaceResourceToDelete = spaceResourceRepository.findById(id).orElseThrow(
+                () -> new SpaceResourceException(ErrorCode.SPACE_NOT_FOUND, "Space not found")
+        );
 
         if (spaceResourceToDelete != null) {
             spaceResourceRepository.delete(spaceResourceToDelete);
