@@ -1,0 +1,19 @@
+services:
+  postgres:
+    env_file:
+      - .env
+    image: postgres:alpine
+    container_name: postgres_local
+    environment:
+      POSTGRES_USER: ${POSTGRESDB_USER}
+      POSTGRES_PASSWORD: ${POSTGRESDB_PASSWORD}
+      POSTGRES_DB: ${POSTGRESDB_DB}
+    ports:
+      - ${POSTGRESDB_DOCKER_PORT}:${POSTGRESDB_LOCAL_PORT}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    driver: local
+
